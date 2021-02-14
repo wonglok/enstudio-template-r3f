@@ -197,7 +197,7 @@
 					"_id": "_14234647",
 					"name": "tailColor",
 					"type": "color",
-					"value": "#6c7128"
+					"value": "#131400"
 				},
 				{
 					"_id": "_73280948",
@@ -320,8 +320,8 @@
 			"isProtected": false,
 			"isUserBoxes": true,
 			"_id": "_51409182",
-			"x": 551.903564453125,
-			"y": 519.5477294921875,
+			"x": 540.2396240234375,
+			"y": 537.349365234375,
 			"displayName": "glow",
 			"moduleName": "glow__ID___51409182",
 			"fileName": "glow__ID___51409182.js",
