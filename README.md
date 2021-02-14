@@ -4,10 +4,12 @@ https://github.com/wonglok/enstudio/releases/
 
 # Live Demo:
 
+https://enstudio-template-r3f.vercel.app/
+
 # Photo Demo:
 
-![EffectNode Studio Demo](./blob/master/docs/img/graph.png?raw=true)
-![EffectNode Studio Demo](./blob/master/docs/img/momo.png?raw=true)
+![EffectNode Studio Demo](https://github.com/wonglok/enstudio-template-r3f/blob/master/docs/img/graph.png?raw=true)
+![EffectNode Studio Demo](https://github.com/wonglok/enstudio-template-r3f/blob/master/docs/img/momo.png?raw=true)
 
 # Video Demo:
 
