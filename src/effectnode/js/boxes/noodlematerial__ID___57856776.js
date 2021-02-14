@@ -28,7 +28,6 @@ export class NoodleLineMaterial {
       shader.uniforms.myColor = { value: new Color("#ff0000") };
 
       if (this.relay && this.relay.onUserData) {
-        // relay.onUserData(({ tailColor, ballColor, opacityTail, opacityBall }) => {
         this.relay.onUserData(({ tailColor, opacityTail }) => {
           shader.uniforms.myColor.value = new Color(tailColor);
           this.material.opacity = Math.abs(opacityTail / 100);
@@ -112,9 +111,7 @@ void makeGeo (out vec3 transformed, out vec3 objectNormal) {
       shader.fragmentShader = shader.fragmentShader.replace(
         "#include <color_pars_fragment>",
         /* glsl */ `#include <color_pars_fragment>
-
         varying float vT;
-
         uniform vec3 myColor;
         `
       );
@@ -123,7 +120,7 @@ void makeGeo (out vec3 transformed, out vec3 objectNormal) {
         "gl_FragColor = vec4( outgoingLight, diffuseColor.a );",
         /* glsl */ `
         outgoingLight = myColor;
-        gl_FragColor = vec4( outgoingLight, diffuseColor.a * (vT) );
+        gl_FragColor = vec4( outgoingLight, diffuseColor.a * (vT * vT) );
         `
       );
 

@@ -7,7 +7,7 @@ export const box = async (relay) => {
 
   const mesh = new Mesh(lineGeometry, lineMaterial);
   mesh.frustumCulled = false;
-  mesh.scale.set(100, 100, 100);
+  mesh.scale.set(50, 50, 50);
 
   relay.pulse({
     type: "add",

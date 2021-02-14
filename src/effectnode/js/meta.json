@@ -105,8 +105,8 @@
 			"isProtected": false,
 			"isUserBoxes": true,
 			"_id": "_86603729",
-			"x": 117.82682800292969,
-			"y": 296.54771423339844,
+			"x": 300.16600036621094,
+			"y": 287.04600524902344,
 			"displayName": "basic-line",
 			"moduleName": "basicline__ID___86603729",
 			"fileName": "basicline__ID___86603729.js",
@@ -132,8 +132,8 @@
 			"isProtected": false,
 			"isUserBoxes": true,
 			"_id": "_74474033",
-			"x": -29.956039428710938,
-			"y": 7.623046875,
+			"x": -16.06414794921875,
+			"y": 5.010498046875,
 			"displayName": "noodle-geometry",
 			"moduleName": "noodlegeometry__ID___74474033",
 			"fileName": "noodlegeometry__ID___74474033.js",
@@ -159,8 +159,8 @@
 			"isProtected": false,
 			"isUserBoxes": true,
 			"_id": "_20661972",
-			"x": -122.01319885253906,
-			"y": -383.0604248046875,
+			"x": -56.77519226074219,
+			"y": -358.71356201171875,
 			"displayName": "spec",
 			"moduleName": "spec__ID___20661972",
 			"fileName": "spec__ID___20661972.js",
@@ -186,8 +186,8 @@
 			"isProtected": false,
 			"isUserBoxes": true,
 			"_id": "_57856776",
-			"x": 305.7669982910156,
-			"y": 9.182373046875,
+			"x": 286.9661560058594,
+			"y": 3.0377197265625,
 			"displayName": "noodle-material",
 			"moduleName": "noodlematerial__ID___57856776",
 			"fileName": "noodlematerial__ID___57856776.js",
@@ -197,7 +197,7 @@
 					"_id": "_14234647",
 					"name": "tailColor",
 					"type": "color",
-					"value": "#24e5ff"
+					"value": "#6c7128"
 				},
 				{
 					"_id": "_73280948",
@@ -253,8 +253,8 @@
 			"isProtected": false,
 			"isUserBoxes": true,
 			"_id": "_72487350",
-			"x": 478.26348876953125,
-			"y": 275.2769775390625,
+			"x": 512.7797241210938,
+			"y": 289.8006591796875,
 			"displayName": "ball",
 			"moduleName": "ball__ID___72487350",
 			"fileName": "ball__ID___72487350.js",
@@ -286,7 +286,20 @@
 			"moduleName": "noodleballmaterail__ID___30804818",
 			"fileName": "noodleballmaterail__ID___30804818.js",
 			"slug": "noodleballmaterail",
-			"userData": [],
+			"userData": [
+				{
+					"_id": "_71320582",
+					"name": "ballOpacity",
+					"type": "number",
+					"value": 100
+				},
+				{
+					"_id": "_59033608",
+					"name": "ballColor",
+					"type": "color",
+					"value": "#eeff00"
+				}
+			],
 			"inputs": [
 				{
 					"_id": "_88519836",
@@ -298,6 +311,52 @@
 				},
 				{
 					"_id": "_81940688",
+					"name": "2"
+				}
+			]
+		},
+		{
+			"isFirstUserBox": false,
+			"isProtected": false,
+			"isUserBoxes": true,
+			"_id": "_51409182",
+			"x": 551.903564453125,
+			"y": 519.5477294921875,
+			"displayName": "glow",
+			"moduleName": "glow__ID___51409182",
+			"fileName": "glow__ID___51409182.js",
+			"slug": "glow",
+			"userData": [
+				{
+					"_id": "_95959173",
+					"name": "threshold",
+					"type": "number",
+					"value": 0
+				},
+				{
+					"_id": "_57883341",
+					"name": "radius",
+					"type": "number",
+					"value": 1.7
+				},
+				{
+					"_id": "_61203682",
+					"name": "strength",
+					"type": "number",
+					"value": 22.5
+				}
+			],
+			"inputs": [
+				{
+					"_id": "_34184139",
+					"name": "0"
+				},
+				{
+					"_id": "_28156777",
+					"name": "1"
+				},
+				{
+					"_id": "_65391799",
 					"name": "2"
 				}
 			]
@@ -381,6 +440,12 @@
 			"outputBoxID": "_20661972",
 			"inputBoxID": "_30804818",
 			"inputSlotID": "_88519836"
+		},
+		{
+			"_id": "_9876012",
+			"outputBoxID": "_51409182",
+			"inputBoxID": "_99044968",
+			"inputSlotID": "_9047780"
 		}
 	]
 }

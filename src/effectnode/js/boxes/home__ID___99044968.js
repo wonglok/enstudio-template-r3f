@@ -42,7 +42,7 @@ export const box = (relay) => {
         <Canvas
           colorManagement={true}
           pixelRatio={window.devicePixelRatio || 1.0}
-          camera={{ position: [0, 0, -150] }}
+          camera={{ position: [0, 0, -50] }}
           onCreated={({ gl }) => {
             gl.outputEncoding = sRGBEncoding;
           }}

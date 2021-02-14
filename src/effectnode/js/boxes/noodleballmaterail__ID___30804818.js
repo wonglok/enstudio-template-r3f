@@ -1,10 +1,15 @@
 /* "noodle-ball-materail" */
 
-import { Clock, Color, MeshStandardMaterial } from "three";
+import { Clock, Color, DoubleSide, MeshStandardMaterial } from "three";
 
 export class NoodleBallMaterial {
   constructor({ relay, CommonShader }) {
     this.material = new MeshStandardMaterial({
+      color: new Color("#ffffff"),
+      side: DoubleSide,
+      transparent: true,
+      metalness: 0.5,
+      roughness: 0.5,
       opacity: 0.5,
     });
     this.CommonShader = CommonShader;
@@ -18,9 +23,9 @@ export class NoodleBallMaterial {
       shader.uniforms.myColor = { value: new Color("#ffffff") };
 
       if (this.relay && this.relay.onUserData) {
-        this.relay.onUserData(({ ballColor, opacityBall }) => {
+        this.relay.onUserData(({ ballColor, ballOpacity }) => {
           shader.uniforms.myColor.value = new Color(ballColor);
-          this.material.opacity = Math.abs(opacityBall / 100);
+          this.material.opacity = Math.abs(ballOpacity / 100);
         });
       }
 
@@ -35,6 +40,8 @@ export class NoodleBallMaterial {
 #include <common>
 attribute vec3 offset;
 uniform float time;
+uniform vec3 myColor;
+varying vec3 myColorV;
 
 ${this.CommonShader.UtilFunctions()}
 
@@ -58,7 +65,26 @@ ${this.CommonShader.UtilFunctions()}
 
         vec3 transformed = position + coord;
 
+        myColorV = myColor;
+        `
+      );
 
+      shader.fragmentShader = shader.fragmentShader.replace(
+        "#include <color_pars_fragment>",
+        /* glsl */ `#include <color_pars_fragment>
+
+        varying vec3 myColorV;
+        `
+      );
+
+      shader.fragmentShader = shader.fragmentShader.replace(
+        "gl_FragColor = vec4( outgoingLight, diffuseColor.a );",
+        /* glsl */ `
+        outgoingLight = myColorV;
+
+        gl_FragColor = vec4( outgoingLight, diffuseColor.a );
+
+        // diffuseColor.rgb *= myColorV;
         `
       );
 
