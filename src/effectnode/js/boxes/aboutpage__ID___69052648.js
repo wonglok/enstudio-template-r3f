@@ -67,7 +67,7 @@ export const box = (relay) => {
           <SetGlobal relay={relay}></SetGlobal>
           <BgEnv></BgEnv>
           <InputObject3D relay={relay}></InputObject3D>
-          <OrbitControls />
+          <OrbitControls enableRotate={false} />
           <ambientLight intensity={1.0} />
         </Canvas>
       );
