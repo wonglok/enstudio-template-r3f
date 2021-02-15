@@ -179,7 +179,7 @@ float pattern (vec2 p, float time) {
 }
 `;
 
-const CatMullRom = `
+const CatMullRom = /* glsl */ `
 
 vec3 catmullRom (vec3 p0, vec3 p1, vec3 p2, vec3 p3, float t) {
   vec3 v0 = (p2 - p0) * 0.5;
@@ -192,7 +192,7 @@ vec3 catmullRom (vec3 p0, vec3 p1, vec3 p2, vec3 p3, float t) {
 
 `;
 
-const Ballify = `
+const Ballify = /* glsl */ `
 
 #define M_PI 3.1415926535897932384626433832795
 
@@ -230,6 +230,26 @@ vec3 ballify (vec3 pos, float r) {
 }
 `;
 
+/*
+Creates a mat3 matrix you can use to transform coordinates to look towards a given point, where:
+
+origin is the position of the camera.
+target is the position to look towards.
+roll is the roll rotation of the camera.
+*/
+const LookAt = /* glsl */ `
+// https://github.com/glslify/glsl-look-at
+
+mat3 calcLookAtMatrix(vec3 origin, vec3 target, float roll) {
+  vec3 rr = vec3(sin(roll), cos(roll), 0.0);
+  vec3 ww = normalize(target - origin);
+  vec3 uu = normalize(cross(ww, rr));
+  vec3 vv = normalize(cross(uu, ww));
+
+  return mat3(uu, vv, ww);
+}
+`;
+
 export class CommonShader {
   static UtilFunctions() {
     return `
@@ -238,8 +258,10 @@ export class CommonShader {
     ${FBMNoise}
     ${CatMullRom}
     ${Ballify}
+    ${LookAt}
   `;
   }
+
   static CoordProcedure() {
     return /* glsl */ `
     // "t" is from 0 to 1
@@ -248,12 +270,12 @@ export class CommonShader {
     vec3 p0 = vec3(0.0);
     vec3 p3 = ballify(vec3(offset * 2.0), 0.5);
 
-    vec3 p1 = (p3 - p0) * 0.25;
+    vec3 p1 = (p3 - p0) * 0.35;
     vec3 p2 = (p3 - p0) * 0.75;
 
     vec3 coord = catmullRom(p0, p1, p2, p3, t);
 
-    coord += 0.06 * snoiseVec3(vec3(coord * 2.0 - 1.0 + time * 0.6));
+    coord += 0.04 * snoiseVec3(vec3(coord * 2.0 - 1.0 + time * 0.6));
     `;
   }
 }

@@ -1,6 +1,7 @@
+/* "about-page" */
 import { OrbitControls } from "@react-three/drei";
-import React, { useEffect, useState } from "react";
-import { Canvas, useThree } from "react-three-fiber";
+import React, { useEffect, useMemo, useState } from "react";
+import { Canvas, useFrame, useThree } from "react-three-fiber";
 import { Color, sRGBEncoding } from "three";
 
 function EachInput({ relay, idx }) {
@@ -28,15 +29,31 @@ function InputObject3D({ relay }) {
 
 function BgEnv() {
   let { scene } = useThree();
-  scene.background = new Color("#232323");
+  scene.background = new Color("#121212");
 
+  return <group></group>;
+}
+
+function SetGlobal({ relay }) {
+  let tsk = useMemo(() => {
+    return [];
+  }, []);
+  let stuff = useThree();
+  relay.Resources.set("systemThree", stuff);
+  relay.Resources.set("onFrame", (v) => {
+    tsk.push(v);
+  });
+
+  useFrame((state, delta) => {
+    tsk.forEach((t) => t(state, delta));
+  });
   return <group></group>;
 }
 
 export const box = (relay) => {
   relay.pulse({
     type: "page",
-    href: "/",
+    href: "/about",
     Component: () => {
       return (
         <Canvas
@@ -47,6 +64,7 @@ export const box = (relay) => {
             gl.outputEncoding = sRGBEncoding;
           }}
         >
+          <SetGlobal relay={relay}></SetGlobal>
           <BgEnv></BgEnv>
           <InputObject3D relay={relay}></InputObject3D>
           <OrbitControls />

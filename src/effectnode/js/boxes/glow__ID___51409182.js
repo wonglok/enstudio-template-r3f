@@ -20,16 +20,12 @@ extend({
 export default function Effects({ relay }) {
   const composer = useRef();
   const { scene, gl, size, camera } = useThree();
-  let dpi = window.devicePixelRatio || 1.0;
-  dpi = 1.0;
-
-  //
 
   const unreal = useRef();
-  useEffect(
-    () => void composer.current.setSize(size.width * dpi, size.height * dpi),
-    [size, dpi]
-  );
+  useEffect(() => {
+    composer.current.setPixelRatio(gl.getPixelRatio());
+    composer.current.setSize(size.width, size.height);
+  }, [size]);
 
   useFrame(() => composer.current.render(), 1);
 

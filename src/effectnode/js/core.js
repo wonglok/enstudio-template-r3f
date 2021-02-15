@@ -83,7 +83,7 @@ function MyCore({ mounter }) {
       let input = inputs[nameOrIDX];
 
       if (!input) {
-        input = inputs.find((e) => e.nameOrIDX === nameOrIDX);
+        input = inputs.find((e) => e._id === nameOrIDX);
       }
 
       if (input) {
@@ -92,6 +92,7 @@ function MyCore({ mounter }) {
         };
         window.addEventListener(input._id, onStream);
 
+        onlineMap.set(box._id, true);
         cableMap.set(input._id, true);
 
         // eventBus.on(input._id, cb);

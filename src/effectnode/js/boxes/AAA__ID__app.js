@@ -15,34 +15,35 @@ import ReactDOM from "react-dom";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function EachInput({ relay, idx }) {
-  const [compo, setCompo] = useState(null);
+function MyRouter({ relay }) {
+  const [rotues, setRoutes] = useState([]);
 
   useEffect(() => {
-    return relay.stream(idx, ({ type, Component, href }) => {
-      if (type === "page-route") {
-        setCompo(
-          <Route to={href}>
-            <Component></Component>
-          </Route>
-        );
-      }
+    relay.box.inputs.map((e, idx) => {
+      return relay.stream(idx, ({ type, Component, href }) => {
+        if (type === "page") {
+          setRoutes((s) => [
+            ...s,
+            <Route key={idx + e._id} exact path={href}>
+              <Component></Component>
+            </Route>,
+          ]);
+        }
+      });
     });
   });
 
-  return compo;
+  return (
+    rotues.length > 0 && (
+      <Router>
+        <Switch>{rotues}</Switch>
+      </Router>
+    )
+  );
 }
 
 function InputsAsRoutes({ relay }) {
-  let rotues = relay.box.inputs.map((e) => {
-    return <EachInput key={e._id} relay={relay}></EachInput>;
-  });
-
-  return (
-    <Router>
-      <Switch>{rotues}</Switch>
-    </Router>
-  );
+  return <MyRouter relay={relay}></MyRouter>;
 }
 
 export const box = ({ domElement, ...relay }) => {
