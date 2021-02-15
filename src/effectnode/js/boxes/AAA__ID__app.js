@@ -42,10 +42,6 @@ function MyRouter({ relay }) {
   );
 }
 
-function InputsAsRoutes({ relay }) {
-  return <MyRouter relay={relay}></MyRouter>;
-}
-
 export const box = ({ domElement, ...relay }) => {
-  ReactDOM.render(<InputsAsRoutes relay={relay}></InputsAsRoutes>, domElement);
+  ReactDOM.render(<MyRouter relay={relay}></MyRouter>, domElement);
 };
